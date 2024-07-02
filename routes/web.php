@@ -13,4 +13,14 @@ Route::post('/logout', [UserController::class, "logoutPage"]);
 
 Route::get('/employee', [UserController::class, "employeePage"]);
 Route::post('/checkEmployee', [UserController::class, "checkEmployeePage"]);
-Route::get('/employeeDetails', [UserController::class, "employeeDetailsPage"]);
+//Route::get('/employeeDetails', [UserController::class, "employeeDetailsPage"]);
+Route::get('/employeeDetails/{employee}', [UserController::class, "viewDetailsPage"]);
+Route::delete('/employeeDetails/{employee}', [UserController::class, "delete"]);
+Route::get('/employeeDetails/{employee}/edit', [UserController::class, "showEditPage"]);
+Route::put('/employeeDetails/{employee}', [UserController::class, "updatePage"]);
+
+//Route::put("/updateEmployee", [UserController::class,"updateEmployeePage"]);
+Route::get('/employeeProfile/{employeeName:name}', [UserController::class, "viewEmployeeProfile"]);
+
+Route::get('/inventory', [UserController::class, "inventoryPage"]);
+Route::post('/checkInventory', [UserController::class, "checkInventoryPage"]);

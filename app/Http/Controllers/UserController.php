@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\employee;
+use App\Models\Employee;
+use App\Models\inventory;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -44,7 +45,7 @@ class UserController extends Controller
             $request->session()->regenerate();
             return redirect('/');
         } else {
-            return "Unsuccessful";
+            return redirect('/')->with('error', 'not logged in');
         }
     }
 
@@ -78,12 +79,83 @@ class UserController extends Controller
             'salary' => 'required',
             'idNumber' => 'required'
         ]);
+        $incomingFields['name'] = strip_tags($incomingFields['name']);
+        $incomingFields['email'] = strip_tags($incomingFields['email']);
+        $incomingFields['department'] = strip_tags($incomingFields['department']);
+        $incomingFields['job'] = strip_tags($incomingFields['job']);
+        $incomingFields['salary'] = strip_tags($incomingFields['salary']);
+        $incomingFields['idNumber'] = strip_tags($incomingFields['idNumber']);
+        $incomingFields['user_id'] = 1;
+
         employee::create($incomingFields);
+        //$incomingFields['department'] = strip_tags($incomingFields['department']);
         return redirect('/');
     }
+
 
     public function employeeDetailsPage()
     {
         return view('employeeDetails');
+    }
+
+    public function viewDetailsPage(Employee $employee)
+    {
+        //return $test->department;
+        return view('employeeDetails', ['employee' => $employee]);
+    }
+
+    public function delete(Employee $employee)
+    {
+        $employee->delete();
+        return redirect('/employeeProfile/Admin');
+    }
+
+    public function updatePage(Employee $employee, Request $request)
+    {
+        $incomingFields = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'department' => 'required',
+            'job' => 'required',
+            'salary' => 'required',
+            'idNumber' => 'required'
+        ]);
+        $incomingFields['name'] = strip_tags($incomingFields['name']);
+        $incomingFields['email'] = strip_tags($incomingFields['email']);
+        $incomingFields['department'] = strip_tags($incomingFields['department']);
+        $incomingFields['job'] = strip_tags($incomingFields['job']);
+        $incomingFields['salary'] = strip_tags($incomingFields['salary']);
+        $incomingFields['idNumber'] = strip_tags($incomingFields['idNumber']);
+        $incomingFields['user_id'] = 1;
+
+        $employee->update($incomingFields);
+        return redirect('/employeeProfile/Admin');
+    }
+
+    public function showEditPage(Employee $employee)
+    {
+        return view('edit-employee', ['employee' => $employee]);
+    }
+
+    public function inventoryPage()
+    {
+        return view('inventory');
+    }
+    public function checkInventoryPage(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'name' => 'required',
+            'barcodeNumber' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+        ]);
+        inventory::create($incomingFields);
+        return "Success";
+    }
+
+    public function viewEmployeeProfile(User $employeeName)
+    {
+        return view("profileList", ['name' => $employeeName->name, 'employees' => $employeeName->employees()->get()]);
     }
 }

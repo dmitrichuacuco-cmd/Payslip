@@ -11,10 +11,12 @@
 
 <div class="container py-md-5 container--narrow">
     <div class="d-flex justify-content-between">
-      <h2>Example Name Here</h2>
+      <h2>{{$employee->name}}</h2>
       <span class="pt-2">
-        <a href="#" class="text-primary mr-2" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-        <form class="delete-post-form d-inline" action="#" method="POST">
+        <a href="/employeeDetails/{{$employee->id}}/edit" class="text-primary mr-2" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+        <form class="delete-post-form d-inline" action="/employeeDetails/{{$employee->id}}" method="POST">
+          @csrf
+          @method("DELETE")
           <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
         </form>
       </span>
@@ -22,13 +24,13 @@
 
     <p class="text-muted small mb-4">
       <a href="#"><img class="avatar-tiny" src="" /></a>
-      Posted by <a href="#">Employee ID Here</a> on 2/3/2019
+      Posted by <a href="#">{{$employee->idNumber}}</a> on 2/3/2019
     </p>
 
     <div class="body-content">
-      <p>Department: </p>
-      <p>Salary: </p>
-      <p>Job Title: </p>
-      <p>Email: </p>
+      <p>Department: {{$employee->department}}</p>
+      <p>Salary: {{$employee->salary}}</p>
+      <p>Job Title: {{$employee->job}}</p>
+      <p>Email: {{$employee->email}}</p>
     </div>
   </div>

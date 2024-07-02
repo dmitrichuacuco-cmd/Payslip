@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class inventory extends Model
 {
     use HasFactory;
 
@@ -16,16 +16,9 @@ class Employee extends Model
      */
     protected $fillable = [
         'name',
-        'email',
-        'department',
-        'job',
-        'salary',
-        'idNumber',
-        'user_id'
+        'barcodeNumber',
+        'description',
+        'price',
+        'quantity',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 }

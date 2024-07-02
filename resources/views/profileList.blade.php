@@ -50,40 +50,18 @@
             margin-bottom: 1em;
         }
     </style>
-</head>
-<body>
-    <div class="navbar">
-        <a href="/">Home</a>
+<div class="container py-md-5 container--narrow">
+    <h2 class="text-center mb-4">Employees</h2>
+    <div class="list-group">
+        @foreach($employees as $employee)
 
-        @auth
-        <form action="/logout" method="POST">
-            @csrf
-            <a href="/logout"><button type="submit" class="button">Logout</button></a>
-        </form> 
-        
-        @else
-        <a href="/login">Login</a>
-        @endauth
+        <a href="/employeeDetails/{{$employee->id}}" class="list-group-item list-group-item-action">
+            <img class="avatar-tiny" />
+            <strong>{{$employee->name}}</strong>
+            <span class="text-muted small">by {{$employee->idNumber}} on 1/3/2019</span>
+          </a>
 
-        <a href="register">Register</a>
-        <a href="/employee">Add Employee</a>
-        <a href="/employeeProfile/{{auth()->user()->name}}">View Employee List</a>
-        <a href="/">Create Payslip</a>
-        <a href="/inventory">Create Inventory Item</a>
+        @endforeach
+      
     </div>
-    <div class="container">
-
-        @auth
-        <h1>You are logged in!</h1>
-        <p>Show employees here</p>
-
-
-        
-        
-        @else
-        <h1>Welcome to the Main Menu</h1>
-        <p>Select an option from the navigation bar.</p>
-        @endauth
-    </div>
-</body>
-</html>
+  </div>
