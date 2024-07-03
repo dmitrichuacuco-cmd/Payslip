@@ -13,7 +13,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Menu</title>
+    <title>Payslip</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,42 +50,18 @@
             margin-bottom: 1em;
         }
     </style>
-</head>
-<body>
-    <div class="navbar">
-        <a href="/">Home</a>
+<div class="container py-md-5 container--narrow">
+    <h2 class="text-center mb-4">Create payslip for: </h2>
+    <div class="list-group">
+        @foreach($employees as $employee)
 
-        @auth
-        <form action="/logout" method="POST">
-            @csrf
-            <a href="/logout"><button type="submit" class="button">Logout</button></a>
-        </form> 
-        
-        @else
-        <a href="login">Login</a>
-        @endauth
+        <a href="/payslipDetails/{{$employee->id}}" class="list-group-item list-group-item-action">
+            <img class="avatar-tiny" />
+            <strong>{{$employee->name}}</strong>
+            <span class="text-muted small">id number: {{$employee->idNumber}} on 1/3/2019</span>
+          </a>
 
-        <a href="register">Register</a>
-        <a href="employee">Add Employee</a>
-        @auth
-        <a href="/employeeProfile/{{auth()->user()->name}}">View Employee List</a>
-        <a href="/payslip/{{auth()->user()->name}}">Create Payslip</a>
-        @endauth
-        
-        <a href="/inventory">Create Inventory Item</a>
+        @endforeach
+      
     </div>
-    <div class="container">
-
-        @auth
-        <h1>You are logged in!</h1>
-
-
-        
-        
-        @else
-        <h1>Welcome to the Main Menu</h1>
-        <p>Select an option from the navigation bar.</p>
-        @endauth
-    </div>
-</body>
-</html>
+  </div>

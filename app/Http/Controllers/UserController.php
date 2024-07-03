@@ -120,6 +120,7 @@ class UserController extends Controller
             'salary' => 'required',
             'idNumber' => 'required'
         ]);
+        //strip_tags so users cant send scripts via submission forms
         $incomingFields['name'] = strip_tags($incomingFields['name']);
         $incomingFields['email'] = strip_tags($incomingFields['email']);
         $incomingFields['department'] = strip_tags($incomingFields['department']);
@@ -157,5 +158,16 @@ class UserController extends Controller
     public function viewEmployeeProfile(User $employeeName)
     {
         return view("profileList", ['name' => $employeeName->name, 'employees' => $employeeName->employees()->get()]);
+    }
+
+
+    public function viewPayslipList(User $employeeName)
+    {
+        return view("payslip-list", ['name' => $employeeName->name, 'employees' => $employeeName->employees()->get()]);
+    }
+
+    public function payslipPage(Employee $employee)
+    {
+        return view('payslipDetails', ['employee' => $employee]);
     }
 }
