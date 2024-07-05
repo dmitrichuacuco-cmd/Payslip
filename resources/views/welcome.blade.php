@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
@@ -21,26 +19,31 @@
             background-color: #f0f0f0;
         }
         button {
-            background-color: #575757;
-            color: white;
+            background-color: #f0f0f0;
+            border: none;
             padding: 0.5em 1em;
             text-decoration: none;
             text-align: center;
         }
+        .button:hover{
+            background-color: #313cb8;
+            color: #f0f0f0;
+        }
         .navbar {
             display: flex;
             justify-content: center;
-            background-color: #333;
+            background-color: #f0f0f0;
             padding: 1em 0;
         }
         .navbar a {
-            color: white;
+            color: #333;
             padding: 0.5em 1em;
             text-decoration: none;
             text-align: center;
         }
         .navbar a:hover{
-            background-color: #575757;
+            background-color: #313cb8;
+            color: #f0f0f0;
         }
         .container {
             text-align: center;
@@ -52,13 +55,14 @@
     </style>
 </head>
 <body>
+    
     <div class="navbar">
+        <td><img src="../images/Electro.png" alt="" style="width: 140px"></td>
         <a href="/">Home</a>
-
         @auth
         <form action="/logout" method="POST">
             @csrf
-            <a href="/logout"><button type="submit" class="button">Logout</button></a>
+            <button href="/logout" type="submit" class="button">Logout</button>
         </form> 
         
         @else
@@ -66,22 +70,20 @@
         @endauth
 
         <a href="register">Register</a>
-        <a href="employee">Add Employee</a>
+        
         @auth
+        <a href="employee">Add Employee</a>
         <a href="/employeeProfile/{{auth()->user()->name}}">View Employee List</a>
         <a href="/payslip/{{auth()->user()->name}}">Create Payslip</a>
+        <a href="/inventory">Create Inventory Item</a>
         @endauth
         
-        <a href="/inventory">Create Inventory Item</a>
+        
     </div>
     <div class="container">
 
         @auth
         <h1>You are logged in!</h1>
-
-
-        
-        
         @else
         <h1>Welcome to the Main Menu</h1>
         <p>Select an option from the navigation bar.</p>

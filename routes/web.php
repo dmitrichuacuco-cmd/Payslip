@@ -1,5 +1,6 @@
 <?php
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -12,8 +13,8 @@ Route::post('/checkLogin', [UserController::class, "checkLoginPage"]);
 Route::post('/logout', [UserController::class, "logoutPage"]);
 
 //employees
-Route::get('/employee', [UserController::class, "employeePage"]);
-Route::post('/checkEmployee', [UserController::class, "checkEmployeePage"]);
+Route::get('/employee', [UserController::class, "employeePage"]);   //go to create employee
+Route::post('/checkEmployee', [UserController::class, "checkEmployeePage"]);    //submit user input to database
 Route::get('/employeeProfile/{employeeName:name}', [UserController::class, "viewEmployeeProfile"]); //view list of employees
 Route::get('/employeeDetails/{employee}', [UserController::class, "viewDetailsPage"]);  //view each employee info 
 Route::get('/employeeDetails/{employee}/edit', [UserController::class, "showEditPage"]);    // go to edit form
@@ -26,4 +27,8 @@ Route::post('/checkInventory', [UserController::class, "checkInventoryPage"]);
 
 //payslips (not complete)
 Route::get('/payslip/{employeeName:name}', [UserController::class, "viewPayslipList"]);  //view list of employees
-Route::get('/payslipDetails/{employee}', [UserController::class, "payslipPage"]);
+Route::get('/payslipDetails/{employee}', [UserController::class, "payslipPage"]);   //get employee data and fill payslip
+Route::post('/payslipSave', [UserController::class, "payslipSaveInfo"]);    //save payslip info to database
+Route::get('/payslipForm/{info}', [UserController::class, "viewPayslipPage"]);  //view payslip info 
+
+Route::get('/pdf', [UserController::class, "print"]); //prints

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Employee;
 use App\Models\inventory;
+use App\Models\Payslip;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -87,7 +89,7 @@ class UserController extends Controller
         $incomingFields['idNumber'] = strip_tags($incomingFields['idNumber']);
         $incomingFields['user_id'] = 1;
 
-        employee::create($incomingFields);
+        Employee::create($incomingFields);
         //$incomingFields['department'] = strip_tags($incomingFields['department']);
         return redirect('/');
     }
@@ -169,5 +171,39 @@ class UserController extends Controller
     public function payslipPage(Employee $employee)
     {
         return view('payslipDetails', ['employee' => $employee]);
+    }
+
+    public function payslipSaveInfo(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'periodStart' => 'required',
+            'periodEnd' => 'required',
+            'date' => 'required',
+            'employeeID' => 'required',
+            'job' => 'required',
+            'name' => 'required',
+            'department' => 'required',
+            'bankAccount' => 'required',
+            'salary' => 'required',
+            'overtime' => 'required',
+            'SSS' => 'required',
+            'philhealth' => 'required',
+            'pagibig' => 'required',
+            'wtax' => 'required',
+            'loans' => 'required',
+        ]);
+        $incomingFields['user_id'] = 1;
+        Payslip::create($incomingFields);
+        return redirect('/employeeProfile/Admin');
+    }
+
+    public function viewPayslipPage(Payslip $payslip)
+    {
+        return view('payslipForm', ['payslip' => $payslip]);
+    }
+
+    public function print()
+    {
+        return Pdf::loadView('print')->download('print.pdf');
     }
 }

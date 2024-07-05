@@ -28,4 +28,8 @@ class Employee extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function payslips()
+    {
+        return $this->hasMany(Payslip::class, 'user_id');
+    }
 }

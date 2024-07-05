@@ -19,6 +19,14 @@
           @method("DELETE")
           <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
         </form>
+
+        <a href="/payslipDetails/{{$employee->id}}">
+          <button class="delete-post-button text-primary" data-toggle="tooltip" data-placement="top" title="Payslip"><i class="fas fa-file"></i></button>
+        </a>
+
+        <a href="/pdf">
+          <button class="delete-post-button text-info" data-toggle="tooltip" data-placement="top" title="Print"><i class="fas fa-print"></i></button>
+        </a>
       </span>
     </div>
 
