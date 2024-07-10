@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('wtax');
             $table->string('loans');
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('employee_id')->constrained();
             $table->rememberToken();
             $table->timestamps();
         });

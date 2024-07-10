@@ -87,7 +87,7 @@ class UserController extends Controller
         $incomingFields['job'] = strip_tags($incomingFields['job']);
         $incomingFields['salary'] = strip_tags($incomingFields['salary']);
         $incomingFields['idNumber'] = strip_tags($incomingFields['idNumber']);
-        $incomingFields['user_id'] = 1;
+        $incomingFields['user_id'] = auth()->id();
 
         Employee::create($incomingFields);
         //$incomingFields['department'] = strip_tags($incomingFields['department']);
@@ -95,14 +95,13 @@ class UserController extends Controller
     }
 
 
-    public function employeeDetailsPage()
-    {
-        return view('employeeDetails');
-    }
 
     public function viewDetailsPage(Employee $employee)
     {
-        //return $test->department;
+        //$employee = Employee::with('payslips')->get();
+        //$number = $employee[0]['id'];
+        //return $employee[$number-1]['payslips'][$number]['bankAccount'];
+        //eturn $employee;
         return view('employeeDetails', ['employee' => $employee]);
     }
 
@@ -129,7 +128,7 @@ class UserController extends Controller
         $incomingFields['job'] = strip_tags($incomingFields['job']);
         $incomingFields['salary'] = strip_tags($incomingFields['salary']);
         $incomingFields['idNumber'] = strip_tags($incomingFields['idNumber']);
-        $incomingFields['user_id'] = 1;
+        $incomingFields['user_id'] = auth()->id();
 
         $employee->update($incomingFields);
         return redirect('/employeeProfile/Admin');
@@ -163,47 +162,4 @@ class UserController extends Controller
     }
 
 
-    public function viewPayslipList(User $employeeName)
-    {
-        return view("payslip-list", ['name' => $employeeName->name, 'employees' => $employeeName->employees()->get()]);
-    }
-
-    public function payslipPage(Employee $employee)
-    {
-        return view('payslipDetails', ['employee' => $employee]);
-    }
-
-    public function payslipSaveInfo(Request $request)
-    {
-        $incomingFields = $request->validate([
-            'periodStart' => 'required',
-            'periodEnd' => 'required',
-            'date' => 'required',
-            'employeeID' => 'required',
-            'job' => 'required',
-            'name' => 'required',
-            'department' => 'required',
-            'bankAccount' => 'required',
-            'salary' => 'required',
-            'overtime' => 'required',
-            'SSS' => 'required',
-            'philhealth' => 'required',
-            'pagibig' => 'required',
-            'wtax' => 'required',
-            'loans' => 'required',
-        ]);
-        $incomingFields['user_id'] = 1;
-        Payslip::create($incomingFields);
-        return redirect('/employeeProfile/Admin');
-    }
-
-    public function viewPayslipPage(Payslip $payslip)
-    {
-        return view('payslipForm', ['payslip' => $payslip]);
-    }
-
-    public function print()
-    {
-        return Pdf::loadView('print')->download('print.pdf');
-    }
 }

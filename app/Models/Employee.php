@@ -30,6 +30,6 @@ class Employee extends Model
     }
     public function payslips()
     {
-        return $this->hasMany(Payslip::class, 'user_id');
+        return $this->hasMany(Payslip::class, 'employee_id');
     }
 }

@@ -20,7 +20,7 @@
           <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
         </form>
 
-        <a href="/payslipDetails/{{$employee->id}}">
+        <a href="/payslip/{{$employee->id}}">
           <button class="delete-post-button text-primary" data-toggle="tooltip" data-placement="top" title="Payslip"><i class="fas fa-file"></i></button>
         </a>
 
@@ -32,7 +32,7 @@
 
     <p class="text-muted small mb-4">
       <a href="#"><img class="avatar-tiny" src="" /></a>
-      Posted by <a href="#">{{$employee->idNumber}}</a> on 2/3/2019
+      Posted by <a href="#">{{$employee->id}}</a> on 2/3/2019
     </p>
 
     <div class="body-content">
@@ -40,5 +40,34 @@
       <p>Salary: {{$employee->salary}}</p>
       <p>Job Title: {{$employee->job}}</p>
       <p>Email: {{$employee->email}}</p>
+    </div>
+  </div>
+
+  <div class="container py-md-5 container--narrow">
+    <h2 class="text-center mb-4">Payslips</h2>
+    <div class="list-group">
+        
+
+        <div class="payslipContainer" style="width: 600px; border-style: ridge; padding: 10px;">
+          <img class="avatar-tiny" />
+          <strong>Payslip #{{$employee->id}}</strong>
+          <span class="text-muted small">by {{$employee->id}} on {{$employee->id}} 
+            <a href="/edit" class="text-primary mr-2" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+            <a href="/payslip/{{$employee->id}}">
+              <button class="delete-post-button text-primary" data-toggle="tooltip" data-placement="top" title="Payslip"><i class="fas fa-file"></i></button>
+            </a>
+            <a href="/pdf">
+              <button class="delete-post-button text-info" data-toggle="tooltip" data-placement="top" title="Print"><i class="fas fa-print"></i></button>
+            </a>
+          </span>
+        </div>
+        
+            
+
+
+        
+
+        
+      
     </div>
   </div>
