@@ -74,7 +74,6 @@
         @auth
         <a href="employee">Add Employee</a>
         <a href="/employeeProfile/{{auth()->user()->name}}">View Employee List</a>
-        <a href="/payslip/{{auth()->user()->name}}">Create Payslip</a>
         <a href="/inventory">Create Inventory Item</a>
         @endauth
         

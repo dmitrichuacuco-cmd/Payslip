@@ -28,8 +28,9 @@ Route::post('/checkInventory', [UserController::class, "checkInventoryPage"]);
 
 //payslips (not complete)
 Route::get('/payslip/{pizza:id}', [PayslipController::class, "viewPayslipList"]);  //view list of employees
-Route::get('/payslipDetails/{payslip}', [PayslipController::class, "payslipPage"]);   //get employee data and fill payslip
+Route::get('/payslipView/{payslip}', [PayslipController::class, "payslipPage"]);   //view payslip details form database
+Route::get('/payslipDetails/{employee}', [PayslipController::class, "payslipFill"]); //get employee data and fill payslip 
 Route::post('/payslipSave', [PayslipController::class, "payslipSaveInfo"]);    //save payslip info to database
 Route::get('/payslipForm/{info}', [PayslipController::class, "viewPayslipPage"]);  //view payslip info 
 
-Route::get('/pdf', [PayslipController::class, "print"]); //prints
+Route::get('/pdf/{payslip}', [PayslipController::class, "print"]); //prints

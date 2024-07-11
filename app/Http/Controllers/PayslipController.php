@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Payslip;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PayslipController extends Controller
 {
@@ -13,6 +15,7 @@ class PayslipController extends Controller
     {
         //return $pizza->payslips()->get();
         //return $pizza;
+        //return $pizza->id;
         return view("payslip-list", ['id' => $pizza->id, 'payslips' => $pizza->payslips()->get()]);
     }
 
@@ -24,6 +27,11 @@ class PayslipController extends Controller
         //return $payslips[1];
         //return $payslip;
         return view('payslip-view', ['payslip' => $payslip]);
+    }
+
+    public function payslipFill(Employee $employee) {
+        //return $employee;
+        return view('payslipDetails', ['employee' => $employee]);
     }
 
     public function payslipSaveInfo(Request $request)
@@ -45,8 +53,10 @@ class PayslipController extends Controller
             'wtax' => 'required',
             'loans' => 'required',
         ]);
+        $employee = auth()->user()->employees()->get();
         //$employee = auth()->user()->employees()->pluck('id');
-        $employee = auth()->user()->employees()->find($incomingFields);
+        //$employee = auth()->user()->employees()->find($request)->pluck('id');
+        //$employee = DB::select('SELECT * FROM employees');
         $incomingFields['user_id'] = auth()->id();
         $incomingFields['employee_id'] = 3;
         //$incomingFields['employee_id'] = $this->id();
@@ -61,9 +71,10 @@ class PayslipController extends Controller
         return view('payslipForm', ['payslip' => $payslip]);
     }
 
-    public function print()
+    public function print(Payslip $payslip)
     {
-        return Pdf::loadView('print')->download('print.pdf');
+        return Pdf::loadView('print', ['payslip' => $payslip])->download('print.pdf');
+        return view('payslip-view', ['payslip' => $payslip]);
     }
 
 }

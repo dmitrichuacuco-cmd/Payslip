@@ -53,10 +53,10 @@
     <div class="list-group">
         @foreach($payslips as $payslip)
 
-        <a href="/payslipDetails/{{$payslip->id}}" class="list-group-item list-group-item-action">
+        <a href="/payslipView/{{$payslip->id}}" class="list-group-item list-group-item-action">
             <img class="avatar-tiny" />
             <strong>{{$payslip->name}}</strong>
-            <span class="text-muted small">id number: {{$payslip->employeeID}} on 1/3/2019</span>
+            <span class="text-muted small"> on {{$payslip->date}}</span>
           </a>
 
         @endforeach

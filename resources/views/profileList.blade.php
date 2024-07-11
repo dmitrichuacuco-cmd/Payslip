@@ -56,7 +56,7 @@
         <a href="/employeeDetails/{{$employee->id}}" class="list-group-item list-group-item-action">
             <img class="avatar-tiny" />
             <strong>{{$employee->name}}</strong>
-            <span class="text-muted small">by {{$employee->idNumber}} on 1/3/2019</span>
+            <span class="text-muted small">id: {{$employee->idNumber}}</span>
           </a>
 
         @endforeach

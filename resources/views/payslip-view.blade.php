@@ -23,7 +23,7 @@
     </style>
   </head>
   <body style="background-color: gray;font-family: verdana;font-size: small;">
-    <form action="/payslipSave" method="POST">
+    <form action="/pdf/{{$payslip->id}}">
     <div style="width:750px; height:1200px; margin: 0 auto; border:1px solid gray; background-color: white; padding: 30px;">
       <div>
         
@@ -337,7 +337,7 @@
   
     <td align="right">
       @csrf
-      <button type="submit" class="btn btn-primary">Save now</button>
+      <button type="submit" class="btn btn-primary">Print now</button>
     </td >
   
     </form>
