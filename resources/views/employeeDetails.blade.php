@@ -8,8 +8,10 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</meta>
 
 <div class="container py-md-5 container--narrow">
+  
     <div class="d-flex justify-content-between">
       <h2>{{$employee->name}}</h2>
       <span class="pt-2">
@@ -20,35 +22,27 @@
           <button class="delete-post-button text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
         </form>
 
-        <a href="/payslip/{{$employee->id}}">
-          <button class="delete-post-button text-primary" data-toggle="tooltip" data-placement="top" title="View Payslip"><i class="fas fa-file"></i></button>
-        </a>
-
-        <a href="/payslipDetails/{{$employee->id}}">
-          <button class="delete-post-button text-primary" data-toggle="tooltip" data-placement="top" title="Make Payslip"><i class="fas fa-envelope-open" ></i></button>
-        </a>
-
-        <a href="/pdf">
-          <button class="delete-post-button text-info" data-toggle="tooltip" data-placement="top" title="Print"><i class="fas fa-print"></i></button>
-        </a>
       </span>
     </div>
 
     <p class="text-muted small mb-4">
       <a href="#"><img class="avatar-tiny" src="" /></a>
-      Posted by <a href="#">{{$employee->id}}</a> on 2/3/2019
+       created on {{$employee->created_at->format('m/d/Y')}}
     </p>
 
     <div class="body-content">
       <p>Department: {{$employee->department}}</p>
-      <p>Salary: {{$employee->salary}}</p>
+      <p>Salary: {{number_format($employee->salary)}}</p>
       <p>Job Title: {{$employee->job}}</p>
       <p>Email: {{$employee->email}}</p>
     </div>
+    <a href="/payslip/{{$employee->id}}">
+      <button class="btn btn-primary">View Payslips</button>
+    </a>
+    <a href="/payslipDetails/{{$employee->id}}">
+      <button class="btn btn-primary">Make Payslip</button>
+    </a>
   </div>
 
-
-
-      
-    </div>
-  </div>
+    
+</div>

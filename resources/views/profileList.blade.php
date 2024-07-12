@@ -11,55 +11,38 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <x-layout>
+    </x-layout>
+
     <title>Employee list</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        button {
-            background-color: #575757;
-            color: white;
-            padding: 0.5em 1em;
-            text-decoration: none;
-            text-align: center;
-        }
-        .navbar {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-            padding: 1em 0;
-        }
-        .navbar a {
-            color: white;
-            padding: 0.5em 1em;
-            text-decoration: none;
-            text-align: center;
-        }
-        .navbar a:hover{
-            background-color: #575757;
-        }
-        .container {
-            text-align: center;
-            padding: 2em;
-        }
-        h1 {
-            margin-bottom: 1em;
-        }
-    </style>
+
 <div class="container py-md-5 container--narrow">
     <h2 class="text-center mb-4">Employees</h2>
     <div class="list-group">
-        @foreach($employees as $employee)
 
-        <a href="/employeeDetails/{{$employee->id}}" class="list-group-item list-group-item-action">
-            <img class="avatar-tiny" />
-            <strong>{{$employee->name}}</strong>
-            <span class="text-muted small">id: {{$employee->idNumber}}</span>
-          </a>
-
-        @endforeach
+        <table class="table table-bright table-striped-columns">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">id number</th>
+                  <th scope="col">action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($employees as $employee)
+                <tr>
+                  <th scope="row">{{$employee->id}}</th>
+                  <td>{{$employee->name}}</td>
+                  <td>{{$employee->idNumber}}</td>
+                  <td><a href="/employeeDetails/{{$employee->id}}" class="list-group-item list-group-item-action"> View</a></td>
+                </tr>
+                @endforeach
+                
+              </tbody>
+        </table>
+        {{$employees->links()}}
       
     </div>
   </div>

@@ -12,54 +12,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payslip</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        button {
-            background-color: #575757;
-            color: white;
-            padding: 0.5em 1em;
-            text-decoration: none;
-            text-align: center;
-        }
-        .navbar {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-            padding: 1em 0;
-        }
-        .navbar a {
-            color: white;
-            padding: 0.5em 1em;
-            text-decoration: none;
-            text-align: center;
-        }
-        .navbar a:hover{
-            background-color: #575757;
-        }
-        .container {
-            text-align: center;
-            padding: 2em;
-        }
-        h1 {
-            margin-bottom: 1em;
-        }
-    </style>
+
+    <x-layout>
+    </x-layout>
 <div class="container py-md-5 container--narrow">
     <h2 class="text-center mb-4">Payslip list</h2>
     <div class="list-group">
-        @foreach($payslips as $payslip)
 
-        <a href="/payslipView/{{$payslip->id}}" class="list-group-item list-group-item-action">
-            <img class="avatar-tiny" />
-            <strong>{{$payslip->name}}</strong>
-            <span class="text-muted small"> on {{$payslip->date}}</span>
-          </a>
+        <table class="table table-bright table-striped-columns">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($payslips as $payslip)
+                <tr>
+                  <th scope="row">{{$payslip->id}}</th>
+                  <td>{{$payslip->name}}</td>
+                  <td>{{$payslip->date}}</td>
+                  <td><a href="/payslipView/{{$payslip->id}}" class="list-group-item list-group-item-action"> View</a></td>
+                </tr>
+                @endforeach
+                
+              </tbody>
+        </table>
+        {{$payslips->links()}}
 
-        @endforeach
+
       
     </div>
   </div>

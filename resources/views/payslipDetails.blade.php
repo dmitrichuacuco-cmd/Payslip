@@ -23,7 +23,7 @@
   </style>
 </head>
 <body style="background-color: gray;font-family: verdana;font-size: small;">
-  <form action="/payslipSave" method="POST">
+  <form action="/payslipSave/{{$employee->id}}" method="POST">
   <div style="width:750px; height:1200px; margin: 0 auto; border:1px solid gray; background-color: white; padding: 30px;">
     <div>
       

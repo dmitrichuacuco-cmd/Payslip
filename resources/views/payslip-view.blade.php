@@ -145,7 +145,7 @@
           <td>Bi-monthly Salary</td>
           <td align="right">
             
-            {{($payslip->salary) / 2}}
+            {{(number_format($payslip->salary) / 2)}}
   
           </td>
           <td align="right"></td>
@@ -154,7 +154,7 @@
           <td></td>
           <td>Overtime</td>
           <td align="right">
-            {{($payslip->overtime)}}
+            {{(number_format($payslip->overtime))}}
           </td>
           <td align="right"></td>
         </tr>
@@ -163,7 +163,7 @@
           <td>SSS</td>
           <td align="right"></td>
           <td align="right">
-            {{($payslip->SSS)}}
+            {{(number_format($payslip->SSS))}}
           </td>
         </tr>
         <tr>
@@ -171,7 +171,7 @@
           <td>Philhealth</td>
           <td align="right"></td>
           <td align="right">
-            {{($payslip->philhealth)}}
+            {{(number_format($payslip->philhealth))}}
           </td>
         </tr>
         <tr>
@@ -179,7 +179,7 @@
           <td>Pag-ibig</td>
           <td align="right"></td>
           <td align="right">
-            {{($payslip->pagibig)}}
+            {{(number_format($payslip->pagibig))}}
           </td>
         </tr>
         <tr>
@@ -187,7 +187,7 @@
           <td>Wtax</td>
           <td align="right"></td>
           <td align="right">
-            {{($payslip->wtax)}}
+            {{(number_format($payslip->wtax))}}
           </td>
         </tr>
         <tr>
@@ -195,7 +195,7 @@
           <td>Loans</td>
           <td align="right"></td>
           <td align="right">
-            {{($payslip->loans)}}
+            {{(number_format($payslip->loans))}}
           </td>
         </tr>
         <tr>
@@ -208,12 +208,12 @@
           <td>&nbsp;</td>
           <td align="right"><b>Totals</b></td>
           <td align="right"><div style="border-bottom:1px solid gray;padding-bottom: 3px;">
-                <b> {{($payslip->salary)/2 + ($payslip->overtime)}} </b>
+                <b> {{number_format(($payslip->salary)/2 + ($payslip->overtime))}} </b>
             </div>
           </td>
           <td align="right">
             <div style="border-bottom:1px solid gray;padding-bottom: 3px;">
-                <b> {{($payslip->SSS) + ($payslip->philhealth) + ($payslip->pagibig) + ($payslip->wtax) + ($payslip->loans)}} </b>
+                <b> {{number_format(($payslip->SSS) + ($payslip->philhealth) + ($payslip->pagibig) + ($payslip->wtax) + ($payslip->loans))}} </b>
             </div>
           </td>
         </tr>
@@ -299,7 +299,7 @@
         </tr>
         <tr style="background: #dfdfdf;">
           <th colspan="2" align="right">NET PAY</th>
-          <th colspan="2" align="center"> {{(($payslip->salary)/2 + ($payslip->overtime)) - (($payslip->SSS) + ($payslip->philhealth) + ($payslip->pagibig) + ($payslip->wtax) + ($payslip->loans))}} </th>
+          <th colspan="2" align="center"> {{number_format((($payslip->salary)/2 + ($payslip->overtime)) - (($payslip->SSS) + ($payslip->philhealth) + ($payslip->pagibig) + ($payslip->wtax) + ($payslip->loans)))}} </th>
         </tr>
       </tbody></table>
       <hr style="border:1px dashed slateblue;">

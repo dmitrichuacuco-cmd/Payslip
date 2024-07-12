@@ -56,29 +56,8 @@
 </head>
 <body>
     
-    <div class="navbar">
-        <td><img src="../images/Electro.png" alt="" style="width: 140px"></td>
-        <a href="/">Home</a>
-        @auth
-        <form action="/logout" method="POST">
-            @csrf
-            <button href="/logout" type="submit" class="button">Logout</button>
-        </form> 
-        
-        @else
-        <a href="login">Login</a>
-        @endauth
-
-        <a href="register">Register</a>
-        
-        @auth
-        <a href="employee">Add Employee</a>
-        <a href="/employeeProfile/{{auth()->user()->name}}">View Employee List</a>
-        <a href="/inventory">Create Inventory Item</a>
-        @endauth
-        
-        
-    </div>
+<x-layout>
+</x-layout>
     <div class="container">
 
         @auth
