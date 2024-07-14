@@ -47,7 +47,7 @@
               <table width="100%">
                 <tbody><tr valign="top">
                   <td valign="top">
-                    <h2 style="margin:5px 0px;">Pay slip</h2>
+                    <h2 style="margin:5px 0px;">Payslip</h2>
                     <div>
                       <table width="100%">
                         <tbody><tr valign="top">
@@ -87,7 +87,7 @@
   
       </div>
       <hr style="border:1px dashed slateblue;">
-      <h3 style="margin: 0px 0px 5px 0px;">Employee</h3>
+      <h3 style="margin: 0px 0px 5px 0px;">Employee Info</h3>
       <table width="100%" style="border:1px solid gray;">
         <tbody><tr>
           <th align="left" width="10%">
@@ -143,9 +143,7 @@
           <td></td>
           <td>Bi-monthly Salary</td>
           <td align="right">
-            
-            {{number_format(($payslip->salary) / 2)}}
-  
+            {{number_format(($payslip->salary))}}
           </td>
           <td align="right"></td>
         </tr>
@@ -232,27 +230,20 @@
           </th>
           <td width="40%">Bank</td>
           <th align="left" width="20%">
-            Leaves taken:
+          <!--  Leaves taken: -->
           </th>
-          <td width="20%">0 local / 0 sick</td>
+          <!--<td width="20%">0 local / 0 sick</td>-->
         </tr>
         <tr>
           <th align="left"> 
           </th>
           <td></td>
           <th align="left">
-            Remaining leaves:
+           <!-- Remaining leaves: -->
           </th>
-          <td>10 local / 12 sick</td>
+          <!--<td>10 local / 12 sick</td>-->
         </tr>
       </tbody></table>
-      <table width="100%">
-        <tbody><tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
   
     </div>
   

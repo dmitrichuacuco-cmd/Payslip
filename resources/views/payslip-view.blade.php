@@ -145,7 +145,7 @@
           <td>Bi-monthly Salary</td>
           <td align="right">
             
-            {{(number_format($payslip->salary) / 2)}}
+            {{(number_format($payslip->salary))}}
   
           </td>
           <td align="right"></td>
