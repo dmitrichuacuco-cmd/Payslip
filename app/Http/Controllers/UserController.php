@@ -86,7 +86,8 @@ class UserController extends Controller
         return "Success";
     }
 
-    
-
+    public function samplePrint() {
+        return view("sample");
+    }
 
 }

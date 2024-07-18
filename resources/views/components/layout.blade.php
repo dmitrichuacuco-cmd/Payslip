@@ -22,7 +22,7 @@
         padding: 1em 0;
     }
     .navbar a {
-        color: #333;
+        color: #333;  
         padding: 0.5em 1em;
         text-decoration: none;
         text-align: center;
@@ -59,6 +59,7 @@
     <a href="/employee">Add Employee</a>
     <a href="/employeeProfile/{{auth()->user()->name}}">View Employee List</a>
     <!--<a href="/inventory">Create Inventory Item</a> -->
+    <a href="/sample">Sample Print</a>
     @endauth
 
 </div>

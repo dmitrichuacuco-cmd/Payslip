@@ -13,6 +13,7 @@ Route::post('/checkRegister', [UserController::class, "checkRegisterPage"]);
 Route::get('/login', [UserController::class, "loginPage"]);
 Route::post('/checkLogin', [UserController::class, "checkLoginPage"]);
 Route::post('/logout', [UserController::class, "logoutPage"]);
+Route::get('/sample', [UserController::class, "samplePrint"]);
 
 //employees
 Route::get('/employee', [EmployeeController::class, "employeePage"]);   //go to create employee
